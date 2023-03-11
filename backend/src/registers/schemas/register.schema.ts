@@ -1,5 +1,4 @@
 import * as mongoose from 'mongoose';
-// import uniqueValidator from 'mongoose-unique-validator'
 
 export const RegisterSchema = new mongoose.Schema({
   name: String,

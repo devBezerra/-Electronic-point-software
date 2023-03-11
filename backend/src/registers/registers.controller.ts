@@ -6,6 +6,7 @@ import {
   Put,
   Param,
   Delete,
+  Query,
 } from '@nestjs/common';
 import { RegisterService } from './shared/register.service';
 import { InitialRegister } from './shared/initial-register';
@@ -22,7 +23,7 @@ export class RegistersController {
 
   @Get(':id')
   async getById(@Param('id') id: string) {
-    return this.registerService.getById(id)
+    return this.registerService.getById(id);
   }
 
   @Post()

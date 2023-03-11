@@ -1,0 +1,12 @@
+<h1>Registros</h1>
+<table>
+  <thead></thead>
+  <tbody>
+    <tr *ngFor="let register of registers">
+      <td>
+        <a routerLink="/registers/{{ register._id }}">{{ register.name }}</a>
+      </td>
+    </tr>
+    <app-new-register (onSubmit)="createHandler($event)"></app-new-register>
+  </tbody>
+</table>

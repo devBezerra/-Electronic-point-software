@@ -5,28 +5,29 @@ import { Model } from 'mongoose';
 
 @Injectable()
 export class RegisterService {
-  constructor(@InjectModel('Register') private readonly registerModel: Model<Register>) {}
+  constructor(
+    @InjectModel('Register') private readonly registerModel: Model<Register>,
+  ) {}
 
   async getAll() {
-    return await this.registerModel.find().exec()
+    return await this.registerModel.find().exec();
   }
 
-  async getById(id: string) {
-    return await this.registerModel.findById(id).exec()
+  async getById(_id: string) {
+    return await this.registerModel.findById(_id).exec();
   }
 
   async create(register: Register) {
-    const createdRegister = new this.registerModel(register)
-    return await createdRegister.save()
+    const createdRegister = new this.registerModel(register);
+    return await createdRegister.save();
   }
 
-  async update(id: string, register: Register) {
-    await this.registerModel.updateOne({_id: id}, register).exec()
-    return this.getById(id)
+  async update(_id: string, register: Register) {
+    await this.registerModel.updateOne({ _id: _id }, register).exec();
+    return this.getById(_id);
   }
 
-  async delete(id: string) {
-    return await this.registerModel.deleteOne({_id: id}).exec()
+  async delete(_id: string) {
+    return await this.registerModel.deleteOne({ _id: _id }).exec();
   }
 }
-
