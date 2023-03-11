@@ -29,7 +29,6 @@ export class RegistersListComponent {
     this.registerService
       .getAllRegisters()
       .subscribe((registers) => (this.registers = registers));
-    console.log(this.registers);
   }
 
   createHandler(register: Register) {

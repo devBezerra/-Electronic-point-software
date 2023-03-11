@@ -1,60 +1,75 @@
-<div *ngIf="register">
-  <form (ngSubmit)="submit()" [formGroup]="registerForm" #formDir="ngForm">
-    <div class="form-group">
-      <div>
-        <label for="Name">Nome:</label>
-        <input
-          type="text"
-          value="{{ register.name }}"
-          formControlName="name"
-          required
-        />
-      </div>
-      <div>
-        <label for="email">Email:</label>
-        <input
-          type="text"
-          value="{{ register.email }}"
-          formControlName="email"
-          required
-        />
-      </div>
-      <div>
-        <label for="cpf">CPF:</label>
-        <input
-          type="text"
-          value="{{ register.cpf }}"
-          formControlName="cpf"
-          required
-        />
-      </div>
-      <div>
-        <label for="contact">Contato:</label>
-        <input
-          type="text"
-          value="{{ register.contact }}"
-          formControlName="contact"
-        />
-      </div>
-      <div>
-        <label for="acquirements">Conhecimentos</label>
-        <div id="acquirements">
-          <div
-            class="checkbox"
-            formArrayName="acquirements"
-            *ngFor="let acquirement of getAcquirementsControls(); let i = index"
-          >
-            <input type="checkbox" [formControlName]="i" />
-            {{ acquirements[i] }}
+<div>
+  <div *ngIf="register && register.cpf == ''">
+    <form (ngSubmit)="submit()" [formGroup]="registerForm" #formDir="ngForm">
+      <div class="form-group">
+        <div>
+          <label for="Name">Nome Completo:</label>
+          <input
+            type="text"
+            value="{{ register.name }}"
+            formControlName="name"
+            required
+          />
+        </div>
+        <div>
+          <label for="email">Email:</label>
+          <input
+            type="text"
+            value="{{ register.email }}"
+            formControlName="email"
+            required
+          />
+        </div>
+        <div>
+          <label for="cpf">CPF:</label>
+          <input
+            type="text"
+            value="{{ register.cpf }}"
+            formControlName="cpf"
+            placeholder="XXX.XXX.XXX-XX"
+            required
+          />
+        </div>
+        <div>
+          <label for="contact">Contato:</label>
+          <input
+            type="text"
+            value="{{ register.contact }}"
+            formControlName="contact"
+          />
+        </div>
+        <div>
+          <label for="acquirements">Conhecimentos</label>
+          <div id="acquirements">
+            <div
+              class="checkbox"
+              formArrayName="acquirements"
+              *ngFor="
+                let acquirement of getAcquirementsControls();
+                let i = index
+              "
+            >
+              <input type="checkbox" [formControlName]="i" />
+              {{ acquirements[i] }}
+            </div>
           </div>
         </div>
+        <div>
+          <button type="submit" [disabled]="!formDir.valid">Enviar</button>
+        </div>
       </div>
-      <div>
-        <button type="submit" [disabled]="!formDir.valid">Enviar</button>
-      </div>
-    </div>
-  </form>
-
-  <p>Informações</p>
-  <p>Nome: {{ register.name }}</p>
+    </form>
+  </div>
+  <div *ngIf="register && register.cpf !== ''">
+    <p>{{ register.name }}</p>
+    <p>{{ register.email }}</p>
+    <p>{{ register.cpf }}</p>
+    <p>{{ register.contact }}</p>
+    <p>Habilidades</p>
+    <ul>
+      <li *ngFor="let acquirement of register.acquirements; let i = index">
+        {{ register.acquirements[i] }}
+      </li>
+    </ul>
+  </div>
 </div>

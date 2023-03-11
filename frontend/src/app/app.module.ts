@@ -8,6 +8,7 @@ import { AppComponent } from './app.component';
 import { RegistersListComponent } from './components/registers-list/registers-list.component';
 import { RegisterComponent } from './components/register/register.component';
 import { NewRegisterComponent } from './components/new-register/new-register.component';
+import { ValidRegisterComponent } from './components/valid-register/valid-register.component';
 
 @NgModule({
   declarations: [
@@ -15,15 +16,16 @@ import { NewRegisterComponent } from './components/new-register/new-register.com
     RegistersListComponent,
     RegisterComponent,
     NewRegisterComponent,
+    ValidRegisterComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

@@ -1,10 +1,19 @@
 <h1>Registros</h1>
 <table>
-  <thead></thead>
+  <thead>
+    <th>Nome</th>
+    <th>Status</th>
+  </thead>
   <tbody>
     <tr *ngFor="let register of registers">
       <td>
-        <a routerLink="/registers/{{ register._id }}">{{ register.name }}</a>
+        <a routerLink="/registers/{{ register._id }}/valid">{{ register.name }}</a>
+      </td>
+      <td *ngIf="register && register.valid == true">
+        Validado
+      </td>
+      <td *ngIf="register && register.valid == false">
+        Não Validado
       </td>
     </tr>
     <app-new-register (onSubmit)="createHandler($event)"></app-new-register>

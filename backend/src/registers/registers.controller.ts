@@ -6,7 +6,7 @@ import {
   Put,
   Param,
   Delete,
-  Query,
+  Patch,
 } from '@nestjs/common';
 import { RegisterService } from './shared/register.service';
 import { InitialRegister } from './shared/initial-register';
@@ -37,6 +37,11 @@ export class RegistersController {
     @Body() register: Register,
   ): Promise<Register> {
     return this.registerService.update(id, register);
+  }
+
+  @Patch(':id')
+  async updateValid(@Param('id') id: string, @Body() any: any): Promise<any> {
+    return this.registerService.updateValid(id, any)
   }
 
   @Delete(':id')

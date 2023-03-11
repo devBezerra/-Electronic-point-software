@@ -23,8 +23,11 @@ export class RegisterService {
   }
 
   update(id: string, register: Register): Observable<Register> {
-    console.log(register)
     return this.http.put<Register>(`${this.apiUrl}/${id}`, register)
+  }
+
+  updateValid(id: string, value: any): Observable<Register> {
+    return this.http.patch<Register>(`${this.apiUrl}/${id}`, value)
   }
 
 }

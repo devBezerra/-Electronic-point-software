@@ -56,13 +56,18 @@ export class RegisterComponent {
       ]),
       cpf: new FormControl('', [
         Validators.required,
-        Validators.minLength(14),
-        Validators.maxLength(14),
+        Validators.pattern('^\\d{3}.\\d{3}.\\d{3}-\\d{2}$')
       ]),
       contact: new FormControl(''),
       acquirements: this.buildAcquirements(),
       valid: new FormControl(false),
     });
+  }
+
+  getRegisterById(id: string) {
+    this.registerService
+      .getRegisterById(id)
+      .subscribe((register) => (this.register = register));
   }
 
   buildAcquirements() {
@@ -77,11 +82,30 @@ export class RegisterComponent {
       : null;
   }
 
-  getRegisterById(id: string) {
-    this.registerService
-      .getRegisterById(id)
-      .subscribe((register) => (this.register = register));
-  }
+  // getCPFControls() {
+  //   return this.registerForm.get('cpf')
+  //     ? (<FormArray>this.registerForm.get('cpf')).controls
+  //     : null;
+  // }
+
+  // changeCPF(event: any) {
+  //   console.log('Chegando')
+  //   let value = event.target.value.replace(/\D/g, '')
+
+  //   const text = []
+
+  //   value.split('').forEach((char: any, index: any) => {
+  //     switch(index) {
+  //       case 3:
+  //       case 6:
+  //         text.push('.')
+  //     }
+
+  //     text.push(char)
+  //   })
+
+  // }
+
 
   submit() {
     let valueSubmit: Register = Object.assign({}, this.registerForm.value)
@@ -93,8 +117,6 @@ export class RegisterComponent {
     });
 
     this.registerForm.value.acquirements = valueSubmit.acquirements
-    
-    console.log(this.registerForm.value.acquirements)
 
     if (this.registerForm.invalid) {
       return;

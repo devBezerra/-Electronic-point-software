@@ -27,6 +27,11 @@ export class RegisterService {
     return this.getById(_id);
   }
 
+  async updateValid(_id: string, any: any) {
+    await this.registerModel.updateOne({_id:_id}, any).exec();
+    return this.getById(_id);
+  }
+
   async delete(_id: string) {
     return await this.registerModel.deleteOne({ _id: _id }).exec();
   }
