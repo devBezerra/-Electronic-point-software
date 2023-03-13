@@ -36,4 +36,5 @@ export class NewRegisterComponent {
     
     this.onSubmit.emit(this.newRegisterForm.value);
   }
+
 }

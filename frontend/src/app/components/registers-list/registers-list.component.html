@@ -1,21 +1,35 @@
-<h1>Registros</h1>
-<table>
-  <thead>
-    <th>Nome</th>
-    <th>Status</th>
-  </thead>
-  <tbody>
-    <tr *ngFor="let register of registers">
-      <td>
-        <a routerLink="/registers/{{ register._id }}/valid">{{ register.name }}</a>
-      </td>
-      <td *ngIf="register && register.valid == true">
-        Validado
-      </td>
-      <td *ngIf="register && register.valid == false">
-        Não Validado
-      </td>
-    </tr>
-    <app-new-register (onSubmit)="createHandler($event)"></app-new-register>
-  </tbody>
-</table>
+<div class="container">
+  <div class="row">
+    <div class="col-9">
+      <h1>Registros</h1>
+      <table class="table table-striped">
+        <thead class="thead-light">
+          <th>Nome</th>
+          <th>Link</th>
+          <th>Status</th>
+          <th>Detalhes</th>
+        </thead>
+        <tbody>
+          <tr *ngFor="let register of registers">
+            <td>{{ register.name }}</td>
+            <td>http://localhost:4200/registers/{{ register._id }}</td>
+            <td *ngIf="register && register.valid == true" class="valid">
+              Validado
+            </td>
+            <td *ngIf="register && register.valid == false" class="invalid">
+              Não Validado
+            </td>
+            <td>
+              <a routerLink="/registers/{{ register._id }}/valid">
+                <button class="btn btn-info">Detalhes</button>
+              </a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="col">
+      <app-new-register (onSubmit)="createHandler($event)"></app-new-register>
+    </div>
+  </div>
+</div>

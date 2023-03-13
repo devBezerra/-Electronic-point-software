@@ -11,24 +11,23 @@ export class RegisterService {
   constructor(private http: HttpClient) {}
 
   getAllRegisters(): Observable<Register[]> {
-    return this.http.get<Register[]>(this.apiUrl)
+    return this.http.get<Register[]>(this.apiUrl);
   }
 
   getRegisterById(_id: string): Observable<Register> {
-    return this.http.get<Register>(`${this.apiUrl}/${_id}`)
+    return this.http.get<Register>(`${this.apiUrl}/${_id}`);
   }
 
   create(register: Register): Observable<Register> {
-    return this.http.post<Register>(this.apiUrl, register)
+    return this.http.post<Register>(this.apiUrl, register);
   }
 
   update(id: string, register: Register): Observable<Register> {
-    return this.http.put<Register>(`${this.apiUrl}/${id}`, register)
+    return this.http.put<Register>(`${this.apiUrl}/${id}`, register);
   }
 
   updateValid(id: string, value: any): Observable<Register> {
-    return this.http.patch<Register>(`${this.apiUrl}/${id}`, value)
+    return this.http.patch<Register>(`${this.apiUrl}/${id}`, value);
   }
 
 }
-

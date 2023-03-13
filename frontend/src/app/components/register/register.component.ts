@@ -82,31 +82,6 @@ export class RegisterComponent {
       : null;
   }
 
-  // getCPFControls() {
-  //   return this.registerForm.get('cpf')
-  //     ? (<FormArray>this.registerForm.get('cpf')).controls
-  //     : null;
-  // }
-
-  // changeCPF(event: any) {
-  //   console.log('Chegando')
-  //   let value = event.target.value.replace(/\D/g, '')
-
-  //   const text = []
-
-  //   value.split('').forEach((char: any, index: any) => {
-  //     switch(index) {
-  //       case 3:
-  //       case 6:
-  //         text.push('.')
-  //     }
-
-  //     text.push(char)
-  //   })
-
-  // }
-
-
   submit() {
     let valueSubmit: Register = Object.assign({}, this.registerForm.value)
 

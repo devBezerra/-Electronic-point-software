@@ -1,16 +1,22 @@
-<h2>Adicionar novo funcionário</h2>
-<form (ngSubmit)="submit()" [formGroup]="newRegisterForm" #formDir="ngForm">
-  <div class="form-group">
-    <label for="Name">Nome:</label>
-    <input
-      type="text"
-      placeholder="Novo Funcionário"
-      formControlName="name"
-      required
-    />
-    <button type="submit" [disabled]="!formDir.valid">
-      Enviar
-    </button>
+<h2>Novo funcionário</h2>
+<div class="row">
+  <form (ngSubmit)="submit()" [formGroup]="newRegisterForm" #formDir="ngForm">
+    <div class="form-group">
+      <label for="Name"><b>Nome:</b></label>
+      <input
+        type="text"
+        placeholder="Novo Funcionário"
+        formControlName="name"
+        class="form-control"
+        required
+      />
+      <small class="form-text text-muted">* Mínimo de 10 caracteres.</small>
+    </div>
+    <div class="col-lg-12" style="text-align: right">
+      <button type="submit" [disabled]="!formDir.valid" class="btn btn-primary">
+        Enviar
+      </button>
+    </div>
     <div
       *ngIf="name.errors?.['required'] && formDir.submitted"
       class="validation-error"
@@ -23,5 +29,5 @@
     >
       <p>O nome precisa possuir mais de 10 Caracteres</p>
     </div>
-  </div>
-</form>
+  </form>
+</div>

@@ -10,6 +10,8 @@ import { RegisterComponent } from './components/register/register.component';
 import { NewRegisterComponent } from './components/new-register/new-register.component';
 import { ValidRegisterComponent } from './components/valid-register/valid-register.component';
 
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,6 +26,7 @@ import { ValidRegisterComponent } from './components/valid-register/valid-regist
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
+    NgbModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

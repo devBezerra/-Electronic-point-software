@@ -12,6 +12,7 @@ import { ActivatedRoute } from '@angular/router';
 export class ValidRegisterComponent {
   register!: Register;
   validRegisterForm!: FormGroup;
+  id!: string;
 
   constructor(
     private registerService: RegisterService,
@@ -20,6 +21,7 @@ export class ValidRegisterComponent {
 
   ngOnInit() {
     const id = String(this.activatedRoute.snapshot.paramMap.get('id'));
+    this.id = id;
     this.registerService
       .getRegisterById(id)
       .subscribe((register) => (this.register = register));
@@ -27,16 +29,19 @@ export class ValidRegisterComponent {
     this.validRegisterForm = new FormGroup({
       valid: new FormControl(true),
     });
-
   }
 
-  submit() {
-    const id = String(this.activatedRoute.snapshot.paramMap.get('id'));    
-    this.updateValidHandler(id, this.validRegisterForm.value);
+  validate() {
+    this.updateValidHandler(this.id, this.validRegisterForm.value);
+  }
+
+  invalidate() {
+    this.validRegisterForm.value.valid = false;
+    this.updateValidHandler(this.id, this.validRegisterForm.value);
   }
 
   updateValidHandler(id: string, value: any) {
     this.registerService.updateValid(id, value).subscribe();
-    window.location.replace('/registers')
+    window.location.replace('/registers');
   }
 }

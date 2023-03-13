@@ -40,12 +40,7 @@ export class RegistersController {
   }
 
   @Patch(':id')
-  async updateValid(@Param('id') id: string, @Body() any: any): Promise<any> {
-    return this.registerService.updateValid(id, any)
-  }
-
-  @Delete(':id')
-  async delete(@Param('id') id: string) {
-    this.registerService.delete(id);
+  async updateValid(@Param('id') id: string, @Body() value: any): Promise<any> {
+    return this.registerService.updateValid(id, value);
   }
 }

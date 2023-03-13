@@ -1,0 +1,21 @@
+table {
+    border-radius: 10px;
+    box-shadow: 5px 10px 8px #888888;
+} 
+
+a {
+    text-decoration: none;
+    color: #FFF;
+}
+
+button {
+    color: #FFF;
+}
+
+.valid {
+    background-color: #A9FCA9;
+}
+
+.invalid {
+    background-color: #FFA9A9;
+}

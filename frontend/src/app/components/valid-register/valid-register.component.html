@@ -1,16 +1,21 @@
-<div *ngIf="register">
-  <p>Nome: {{ register.name }}</p>
-  <p>Email: {{ register.email }}</p>
-  <p>CPF: {{ register.cpf }}</p>
-  <p>Contato: {{ register.contact }}</p>
-  <p>Habilidades:</p>
-  <ul>
-    <li *ngFor="let acquirement of register.acquirements; let i = index">
-      {{ register.acquirements[i] }}
-    </li>
-  </ul>
-  <form (ngSubmit)="submit()" [formGroup]="validRegisterForm">
-    <input type="submit" value="Validar">
-    <button routerLink="/registers">Invalidar</button>    
-  </form>
+<div class="container col-lg-6">
+  <div *ngIf="register">
+    <h2>{{ register.name }}</h2>
+    <p><b>Nome:</b> {{ register.name }}</p>
+    <p><b>Email:</b> {{ register.email }}</p>
+    <p><b>CPF:</b> {{ register.cpf }}</p>
+    <p><b>Contato:</b> {{ register.contact }}</p>
+    <p><b>Habilidades:</b></p>
+    <ul>
+      <li *ngFor="let acquirement of register.acquirements; let i = index">
+        {{ register.acquirements[i] }}
+      </li>
+    </ul>
+    <form [formGroup]="validRegisterForm">
+      <div class="col-lg-9" style="text-align: right">
+        <button class="btn btn-success" (click)="validate()">Validar</button>
+        <button class="btn btn-danger" (click)="invalidate()">Invalidar</button>
+      </div>
+    </form>
+  </div>
 </div>
