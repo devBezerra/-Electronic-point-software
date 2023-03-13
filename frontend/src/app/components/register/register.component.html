@@ -30,8 +30,10 @@
           <input
             type="text"
             value="{{ register.cpf }}"
+            mask="000.000.000-00"
+            [showMaskTyped]="true"
+            [dropSpecialCharacters]="false"
             formControlName="cpf"
-            placeholder="XXX.XXX.XXX-XX"
             class="form-control"
             required
           />
@@ -44,6 +46,9 @@
             value="{{ register.contact }}"
             formControlName="contact"
             class="form-control"
+            mask="(00) 00000-0000"
+            [showMaskTyped]="true"
+            [dropSpecialCharacters]="false"
           />
         </div>
         <div class="form-group">
@@ -57,7 +62,7 @@
                 let i = index
               "
             >
-              <input type="checkbox" [formControlName]="i" />
+              <input type="checkbox" [formControlName]="i"/>
               {{ acquirements[i] }}
             </div>
           </div>

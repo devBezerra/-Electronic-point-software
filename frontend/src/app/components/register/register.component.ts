@@ -54,10 +54,7 @@ export class RegisterComponent {
         Validators.maxLength(100),
         Validators.email,
       ]),
-      cpf: new FormControl('', [
-        Validators.required,
-        Validators.pattern('^\\d{3}.\\d{3}.\\d{3}-\\d{2}$')
-      ]),
+      cpf: new FormControl('', [Validators.required]),
       contact: new FormControl(''),
       acquirements: this.buildAcquirements(),
       valid: new FormControl(false),
@@ -83,22 +80,21 @@ export class RegisterComponent {
   }
 
   submit() {
-    let valueSubmit: Register = Object.assign({}, this.registerForm.value)
+    let valueSubmit: Register = Object.assign({}, this.registerForm.value);
 
     valueSubmit = Object.assign(valueSubmit, {
       acquirements: valueSubmit.acquirements
-        .map((v: any, i: any) => v ? this.acquirements[i] : null)
-        .filter((v: any) => v !== null)
+        .map((v: any, i: any) => (v ? this.acquirements[i] : null))
+        .filter((v: any) => v !== null),
     });
 
-    this.registerForm.value.acquirements = valueSubmit.acquirements
+    this.registerForm.value.acquirements = valueSubmit.acquirements;
 
     if (this.registerForm.invalid) {
       return;
     }
 
     const id = String(this.activatedRoute.snapshot.paramMap.get('id'));
-    
     this.updateHandler(id, this.registerForm.value);
   }
 

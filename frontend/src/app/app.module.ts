@@ -12,6 +12,12 @@ import { ValidRegisterComponent } from './components/valid-register/valid-regist
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
+import { NgxMaskModule, IConfig } from 'ngx-mask'
+
+const maskConfig: Partial<IConfig> = {
+  validation: false,
+};
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -27,6 +33,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     FormsModule,
     ReactiveFormsModule,
     NgbModule,
+    NgxMaskModule.forRoot(maskConfig),
   ],
   providers: [],
   bootstrap: [AppComponent],
