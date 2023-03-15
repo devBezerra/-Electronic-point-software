@@ -11,18 +11,14 @@ import { Router } from '@angular/router';
 export class RegistersListComponent {
   constructor(
     private registerService: RegisterService,
-    private router: Router,
-  ) {
-    this.getAllRegisters();
-  }
+    private router: Router
+  ) {}
 
   registers!: Register[];
   register!: Register;
 
   ngOnInit() {
-    this.registerService
-      .getAllRegisters()
-      .subscribe((registers) => (this.registers = registers));
+    this.getAllRegisters();
   }
 
   getAllRegisters() {
@@ -33,6 +29,11 @@ export class RegistersListComponent {
 
   createHandler(register: Register) {
     this.registerService.create(register).subscribe();
-    window.location.reload()
+    this.router
+      .navigateByUrl('/registers', { skipLocationChange: true })
+      .then(() => {
+        this.router.navigate(['/registers']);
+      });
+    this.ngOnInit()
   }
 }

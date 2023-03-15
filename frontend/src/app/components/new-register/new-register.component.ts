@@ -1,5 +1,5 @@
 import { Component, Output, EventEmitter } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormGroup, FormControl, Validators, FormArray } from '@angular/forms';
 import { Register } from 'src/app/interfaces/Register';
 
 @Component({
@@ -21,12 +21,8 @@ export class NewRegisterComponent {
       cpf: new FormControl(''),
       contact: new FormControl(''),
       valid: new FormControl(false),
-      acquirements: new FormControl([]),
+      acquirements: new FormArray([]),
     });
-  }
-
-  get name() {
-    return this.newRegisterForm.get('name')!;
   }
 
   submit() {

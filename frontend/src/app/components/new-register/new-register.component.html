@@ -2,7 +2,7 @@
 <div class="row">
   <form (ngSubmit)="submit()" [formGroup]="newRegisterForm" #formDir="ngForm">
     <div class="form-group">
-      <label for="Name"><b>Nome:</b></label>
+      <label for="name"><b>Nome:</b></label>
       <input
         type="text"
         placeholder="Novo Funcionário"
@@ -16,18 +16,6 @@
       <button type="submit" [disabled]="!formDir.valid" class="btn btn-primary">
         Enviar
       </button>
-    </div>
-    <div
-      *ngIf="name.errors?.['required'] && formDir.submitted"
-      class="validation-error"
-    >
-      <p>O nome é obrigatório</p>
-    </div>
-    <div
-      *ngIf="name.errors?.['minlength'] && formDir.submitted"
-      class="validation-error"
-    >
-      <p>O nome precisa possuir mais de 10 Caracteres</p>
     </div>
   </form>
 </div>

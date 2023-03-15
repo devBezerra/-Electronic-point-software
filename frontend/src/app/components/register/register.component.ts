@@ -10,6 +10,8 @@ import {
   Validators,
 } from '@angular/forms';
 
+import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -33,14 +35,13 @@ export class RegisterComponent {
   constructor(
     private registerService: RegisterService,
     private activatedRoute: ActivatedRoute,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private router: Router
   ) {}
 
   ngOnInit() {
     const id = String(this.activatedRoute.snapshot.paramMap.get('id'));
-    this.registerService
-      .getRegisterById(id)
-      .subscribe((register) => (this.register = register));
+    this.getRegisterById(id);
 
     this.registerForm = new FormGroup({
       name: new FormControl('', [
@@ -54,7 +55,7 @@ export class RegisterComponent {
         Validators.maxLength(100),
         Validators.email,
       ]),
-      cpf: new FormControl('', [Validators.required]),
+      cpf: new FormControl('', [Validators.required, Validators.minLength(14)]),
       contact: new FormControl(''),
       acquirements: this.buildAcquirements(),
       valid: new FormControl(false),
@@ -90,6 +91,13 @@ export class RegisterComponent {
 
     this.registerForm.value.acquirements = valueSubmit.acquirements;
 
+    if (
+      this.registerForm.value.acquirements.length == 0 ||
+      this.registerForm.value.acquirements.length > 3
+    ) {
+      return;
+    }
+
     if (this.registerForm.invalid) {
       return;
     }
@@ -100,6 +108,10 @@ export class RegisterComponent {
 
   updateHandler(id: string, register: Register) {
     this.registerService.update(id, register).subscribe();
-    window.location.reload()
+    this.router
+      .navigateByUrl(`/registers/${id}/info`, { skipLocationChange: true })
+      .then(() => {
+        this.router.navigate([`/registers/${id}/info`]);
+      });
   }
 }

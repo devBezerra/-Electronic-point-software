@@ -3,6 +3,7 @@ import { FormGroup, FormControl } from '@angular/forms';
 import { RegisterService } from 'src/app/services/register.service';
 import { Register } from 'src/app/interfaces/Register';
 import { ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-valid-register',
@@ -16,7 +17,8 @@ export class ValidRegisterComponent {
 
   constructor(
     private registerService: RegisterService,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private router: Router
   ) {}
 
   ngOnInit() {
@@ -42,6 +44,10 @@ export class ValidRegisterComponent {
 
   updateValidHandler(id: string, value: any) {
     this.registerService.updateValid(id, value).subscribe();
-    window.location.replace('/registers');
+    this.router
+    .navigateByUrl('/registers', { skipLocationChange: true })
+    .then(() => {
+      this.router.navigate(['/registers']);
+    });
   }
 }

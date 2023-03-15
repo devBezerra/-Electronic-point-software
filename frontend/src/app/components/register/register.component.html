@@ -65,6 +65,7 @@
               <input type="checkbox" [formControlName]="i"/>
               {{ acquirements[i] }}
             </div>
+            <small class="form-text text-muted">* Mínimo 1 e Máximo 3.</small>
           </div>
         </div>
         <div class="col-lg-12" style="text-align: right;">
@@ -74,15 +75,6 @@
     </form>
   </div>
   <div *ngIf="register && register.cpf !== ''">
-    <h2>{{ register.name }}</h2>
-    <p><b>Email:</b> {{ register.email }}</p>
-    <p><b>CPF:</b> {{ register.cpf }}</p>
-    <p><b>Contato:</b> {{ register.contact }}</p>
-    <p><b>Habilidades</b></p>
-    <ul>
-      <li *ngFor="let acquirement of register.acquirements; let i = index">
-        {{ register.acquirements[i] }}
-      </li>
-    </ul>
+    <app-info-register />
   </div>
 </div>

@@ -12,7 +12,8 @@ import { ValidRegisterComponent } from './components/valid-register/valid-regist
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
-import { NgxMaskModule, IConfig } from 'ngx-mask'
+import { NgxMaskModule, IConfig } from 'ngx-mask';
+import { InfoRegisterComponent } from './components/info-register/info-register.component';
 
 const maskConfig: Partial<IConfig> = {
   validation: false,
@@ -25,6 +26,7 @@ const maskConfig: Partial<IConfig> = {
     RegisterComponent,
     NewRegisterComponent,
     ValidRegisterComponent,
+    InfoRegisterComponent,
   ],
   imports: [
     BrowserModule,
